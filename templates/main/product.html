@@ -1,0 +1,44 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="product_section layout_padding">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-3 col-xl-2">
+                    <form method="get">
+                        {{ filter.form.as_p }}
+                        <button class="btn btn-danger" type="submit">Filter</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {% for p in object_list %}
+                        <div class="col-sm-9 col-lg-4">
+                            <div class="box"><h4>{{ p.name }}</h4>
+                                <div class="img-box">
+                                    <img src="{{ p.image.url }}">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        <p>Narxi: $ {{ p.price }}</p>
+                                        <a href="{% url 'main:product_info' p.id %}" class="text-primary">Batafsil
+                                            Ma'lumot</a>
+                                        <br/>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-12">
+                        <h2>Birorta ham mahsulot topilmadi Janob</h2>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1 class="text-primary">{{ object.name }}</h1>
+        <div class="text-center">
+            <img src="{{ product.image.url }}">
+        </div>
+        <h3 class="text-primary">Narxi: ${{ product.price }}</h3><br/>
+
+        {% if object.available > 0 %}
+            {% if cart_p > 0 %}
+                <a href="{% url 'cart:cart_add' 'dec' object.id %}" class="btn btn-info mb-3">-</a>
+                <span>{{ cart_p }}</span>
+                <a href="{% url 'cart:cart_add' 'inc' object.id %}" class="btn btn-info mb-3">+</a><br/>
+
+                {% else %}
+                <a href="{% url 'cart:cart_add' 'inc' object.id %}" class="btn btn-info mb-3">Buyurtma berish</a><br/>
+                {% endif %}
+        {% endif %}
+
+        {% lorem 2 %}
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    </div>
+{% endblock %}
